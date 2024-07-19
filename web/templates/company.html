@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <!-- jQuery 로드 -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body>
+    <div class="slider">
+        <div class="slides">
+            {% for i in range(10) %}
+            {% set outer_index = loop.index %}
+            <div>
+                <img src="{{ url_for('static', filename='img/image' ~ outer_index ~ '.jpg') }}" alt="Image {{ outer_index }}">
+                {% for key in keys %}
+                    <p>{{key}} : <span id ="{{key ~ outer_index}}" >{{data[i][key]}} </span></p>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </div>
+
+    <script src="{{url_for('static', filename='js/jquery-3.7.1.min.js')}}"></script>
+
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+</body>
+</html>
